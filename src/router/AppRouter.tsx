@@ -4,6 +4,7 @@ import Home from "../pages/Home.tsx";
 
 const AppRouter = () => {
     const routes: RouteObject[] = [
+
         { index: true, element: <Home /> }, // Home => "/"
         { path: "/about", element: <About /> }, // About => "/about"
     ];
