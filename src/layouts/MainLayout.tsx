@@ -9,12 +9,12 @@ const Wrap = styled.div`
     flex-direction: column;
 `;
 
-function MainLayout() {
+function MainLayout({ toggleTheme }: { toggleTheme: () => void }) {
     // Outlet
     // 이 자리에 Routes의 내용이 들어올 자리라는걸 표현하는 기능
     return (
         <Wrap>
-            <Header />
+            <Header toggleTheme={toggleTheme} />
             <Outlet />
             <Footer />
         </Wrap>

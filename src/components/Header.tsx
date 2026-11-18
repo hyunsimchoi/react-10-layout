@@ -25,7 +25,7 @@ const NavRight = styled.div`
     align-items: center;
 `;
 
-function Header() {
+function Header({ toggleTheme }: { toggleTheme: () => void }) {
     return (
         <Head>
             <Nav>
@@ -36,7 +36,7 @@ function Header() {
             <NavRight>
                 <Link to={"/auth/login"}>로그인</Link>
                 <Link to={"/auth/signup"}>회원가입</Link>
-                <button>테마토글</button>
+                <button onClick={toggleTheme}>테마토글</button>
             </NavRight>
         </Head>
     );
