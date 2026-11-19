@@ -11,7 +11,7 @@ function App() {
     // 1. 화면이 다 그려진 상태에서 사용자는 button을 눌러 값을 변화시켜야 하고
     // 2. state의 값이 변화함에 따라 화면을 다시 그려줘야되기 때문
 
-    // localStorage에서 getItem을 했었을 때 해당 하는 키의 데이터가 없을 수 있음 => undefined
+    // localStorage에서 getItem을 했었을 때 해당 하는 키의 데이터가 없을 수 있음 => null
     //                 getItem을 했었을 때 key가 있더라도 그에 대한 값은 무조건 string
     // const [theme, setTheme] = useState<"light" | "dark">(localStorage.getItem("theme") === "dark" ? "dark" : "light");
     const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -34,13 +34,15 @@ function App() {
 
         // useState에서 얻어진 set함수의 매개변수 자리엔 함수가 들어갈 수 있는데
         // 이 때, prev는 "현재 state에 저장된 값"이 들어옴
-        setTheme((prev) => { return prev === "dark" ? "light" : "dark"});
+        setTheme(prev => {
+            return prev === "dark" ? "light" : "dark";
+        });
     };
 
     return (
         <ThemeProvider theme={theme === "light" ? LightTheme : DarkTheme}>
             <GlobalStyle />
-            <RouterProvider router={AppRouter(toggleTheme)} />
+            <RouterProvider router={AppRouter(toggleTheme, theme, setTheme)} />
         </ThemeProvider>
     );
 }
